@@ -1,8 +1,8 @@
 # OWL-Repository
 ## +About OWL and Odoo
-* -OWL is the underlying component system Odoo is based on. *
-* -Odoo is a user interface component framework. *
-* -OWL is a custom made framework for Odoo. *
+* -OWL is the underlying component system Odoo is based on.
+* -Odoo is a user interface component framework.
+* -OWL is a custom made framework for Odoo.
         -- It creates the components as classes instead of functions.
         -- Uses XML documents as templates to modify and store tem
         -- It uses hooks to implement additional features and functionalities.
@@ -10,21 +10,21 @@
 
 
 ## +How to create an OWL project using VITE:
-* -Install vite if it wasn't installed: 
-        npm create vite@latest 
+* -Install vite if it wasn't installed:
+        npm create vite@latest
 
-* -Set up the Vite project: 
+* -Set up the Vite project:
     -- ✔ Project name: … owl-vite-project
     -- ✔ Select a framework: › vanilla
-    -- ✔ Select a variant: › JavaScript 
+    -- ✔ Select a variant: › JavaScript
 
-* -Navigate to the OWL directory: 
+* -Navigate to the OWL directory:
 
-* -Install OWL:  
+* -Install OWL:
         npm install @odoo/owl
 
 * -Set up Vite configuration:
-        --Edit the vite.config.js to open the app in the browser automatically every time the server starts. If vite.config.js it does not exist, create it at the root of your project: *
+        --Edit the vite.config.js to open the app in the browser automatically every time the server starts. If vite.config.js it does not exist, create it at the root of your project:
 
         import { defineConfig } from 'vite';
         export default defineConfig({
