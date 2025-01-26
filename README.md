@@ -11,9 +11,11 @@
 
 ## +How to create an OWL project using VITE:
 * -Install vite if it wasn't installed:
+
         npm create vite@latest
 
 * -Set up the Vite project:
+
     -- ✔ Project name: … owl-vite-project
     -- ✔ Select a framework: › vanilla
     -- ✔ Select a variant: › JavaScript
@@ -21,6 +23,7 @@
 * -Navigate to the OWL directory:
 
 * -Install OWL:
+
         npm install @odoo/owl
 
 * -Set up Vite configuration:
@@ -35,21 +38,19 @@
 
 * You are ready to create your components:
     In your src directory, create a file main.js to initialize and mount your Owl components. For example:
+
         import { Component, mount, useState, xml } from '@odoo/owl';
         class Counter extends Component {
         static template = xml`
             <button t-on-click="() => state.value += props.increment">
             Click Me! [<t t-esc="state.value"/>]
             </button>`;
-
         state = useState({ value: 0 });
         }
-
         class Root extends Component {
         static template = xml`
             <span>Hello Owl</span>
             <Counter increment="2"/>`;
-
         static components = { Counter };
         }
         mount(Root, document.body);
