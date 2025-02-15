@@ -24,3 +24,4 @@
 - In order to make Odoo read a module, we need to include the folder "modules" in our connection command: python odoo-bin -r dbuser -w dbpassword --addons-path=addons,modules -d mydb
 - To allow Odoo access to modules in development, we need to access the interface settings and activate the developer mode at the end of the section.
 - If you want the module to be updated as you develop it, you can include the extension -u "name_module"
+- You only need the base init and  manifest to make your Odoo module appear
