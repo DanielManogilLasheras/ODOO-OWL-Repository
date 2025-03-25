@@ -25,3 +25,8 @@
 - To allow Odoo access to modules in development, we need to access the interface settings and activate the developer mode at the end of the section.
 - If you want the module to be updated as you develop it, you can include the extension -u "name_module"
 - You only need the base init and  manifest to make your Odoo module appear
+
+## Constraints:
+
+- SQL constraints: https://www.postgresql.org/docs/12/ddl-constraints.html
+- Python constraints: https://www.odoo.com/documentation/18.0/developer/reference/backend/orm.html#odoo.api.constrains
