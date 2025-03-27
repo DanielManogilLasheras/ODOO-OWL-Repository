@@ -36,3 +36,26 @@
 
 - SQL constraints: https://www.postgresql.org/docs/12/ddl-constraints.html
 - Python constraints: https://www.odoo.com/documentation/18.0/developer/reference/backend/orm.html#odoo.api.constrains
+
+
+#ODOO TOOLS AND MODULES SETUP
+
+## wkhtmlopdf tool
+
+- This is for Windows:
+
+First, download and install wkhtmltopdf for your version of windows (32 bit or 64 bit).
+Once it's installed, go to Openerp/odoo and go to Settings> Users and click on your user
+Click edit and scroll down and look for "Technical Features" is enabled / checked.
+Click Apply, then log out of Odoo and then login
+Go to Settings again and now you should see several new technical menu items on the left
+Go to Settings -> Customization -> Parameters -> System Parameters
+Click Add and for Key insert : webkit_path
+For value insert: C:\Progra~1\wkhtmltopdf\bin\wkhtmltopdf.exe
+Apply and exit and restart Windows.
+After you do the above steps, go to System  in Control Panel.
+Click on Advanced Settings. The System Properties window will pop up.
+In the "Advanced" Tab, Click on "Environment Variables". 
+In the "System variables", scroll down until you find the "Path" variable and double click. !!!!!NOT user variables
+inside the "Variable value" field, add this to the end: ;C:\Program Files\wkhtmltopdf\bin
+Click OK and then reboot your system.
