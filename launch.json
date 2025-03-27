@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Odoo 17",
+            "type": "debugpy",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}\\odoo-bin",
+            "args": [
+                "-c",
+                "${workspaceFolder}\\debian\\odoo.conf",
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+        }
+    ]
+}
