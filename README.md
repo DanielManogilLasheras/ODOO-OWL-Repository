@@ -59,3 +59,24 @@ In the "Advanced" Tab, Click on "Environment Variables".
 In the "System variables", scroll down until you find the "Path" variable and double click. !!!!!NOT user variables
 inside the "Variable value" field, add this to the end: ;C:\Program Files\wkhtmltopdf\bin
 Click OK and then reboot your system.
+
+
+#ODOO VERSIONS CONSIDERATIONS AND TIPS:
+
+## Odoo 17 and above:
+
+### XML tips:
+
+- For making columns totally invisible, use : column_invisible="True"
+- FORMS STRUCTURE:
+
+          <record id="action_print_report_submittals" model="ir.actions.report">
+                <field name="name">Print PDF</field>
+                <field name="model">quotation.manager</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">quotation_manager.report_submittals</field>
+                <field name="report_file">quotation_manager.report_submittals</field>
+                <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Submittal- %s' % (object.name)</field>
+                <field name="binding_model_id" ref="model_quotation_manager"/>
+                <field name="binding_type">report</field>
+        </record>
