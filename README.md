@@ -80,3 +80,57 @@ Click OK and then reboot your system.
                 <field name="binding_model_id" ref="model_quotation_manager"/>
                 <field name="binding_type">report</field>
         </record>
+
+  ### Pressing a button and sending an email template with a pdf attached
+  - Function to open de email composer with pdf attached:
+
+            def action_quotation_send(self):
+                    submittal_report = self.env.ref('quotation_manager.action_print_report_submittals')
+                    data_record = base64.b64encode(self.env['ir.actions.report'].sudo()._render_qweb_pdf(submittal_report, [self.id], data=None)[0])
+                    ir_values = {
+                        'name': f'Submittal  { self.name }.pdf',
+                        'type': 'binary',
+                        'datas': data_record,
+                        'mimetype': 'application/pdf',
+                        'res_model': 'quotation.manager',
+                        'res_id' : self.id,
+                    }
+                    submittal_report_attachment_id = self.env[
+                        'ir.attachment'].sudo().create(ir_values)
+                    
+                    if submittal_report_attachment_id:
+                        email_template = self.env.ref(
+                            'quotation_manager.email_template_submittals')
+                        if self.partner_id.email:
+                            email = self.partner_id.email
+                        else:
+                            email = 'admin@example.com'
+                        if email_template and email:
+                            email_values = {
+                                'email_to': email,
+                                'email_cc': False,
+                                'scheduled_date': False,
+                                'recipient_ids': [],
+                                'partner_ids': [],
+                                'auto_delete': True,
+                            }
+                        context = {
+                            'default_model': 'quotation.manager',
+                            'default_res_ids': self.ids,
+                            'default_use_template': True,
+                            'default_template_id':  email_template.id,
+                            'default_composition_mode': 'comment',
+                            'default_attachment_ids': [(4, submittal_report_attachment_id.id)],
+                            'mark_so_as_sent': True,
+                            'custom_layout': "mail.mail_notification_light",
+                            'force_email': True,
+                        }
+                        return {
+                            'type': 'ir.actions.act_window',
+                            'view_mode': 'form',
+                            'res_model': 'mail.compose.message',
+                            'views': [(False, 'form')],
+                            'view_id': False,
+                            'target': 'new',
+                            'context': context,
+                        }
