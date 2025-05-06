@@ -15,6 +15,8 @@
 - Use debian\odoo.conf to setup the configuration of addons and connection values.
 - use a base of launch.json in this repository to setup the launch.
 
+## Command line to clone a gitlab repository with an Odoo submodule for faster deployment:
+
 ## Parts of an Odoo module
 - We can see the import file init.py, and the manifest.py which contains the information about the module
       The "data" section indicates where the views are contained.
