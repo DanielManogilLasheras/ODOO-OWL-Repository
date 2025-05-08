@@ -4,7 +4,7 @@
 - Make sure you have the Python 3.12.4 version installed or the best version for the Odoo version, the latest version will result in error: https://www.python.org/downloads/release/python-3124/
 - Install visual studio build tools selecting Desktop development with C++.
 - Go to an IDE, and create a venv enviroment inside the Odoo folder: python -m venv venv. We can create virtual enviroments of different versions by: py -3.9 -m venv venv
-- Activate the virtual enviroment: venv\Scripts\Activate.ps1
+- Activate the virtual enviroment: venv\Scripts\Activate.bat
 - After that install the setuptools wheel: pip install setuptools wheel
 - Install the odoo requirements: pip install -r requirements.txt
 - Connect to the database with the command, if it is the first time it's connecting, you must add "-i base": python odoo-bin -r dbuser -w dbpassword --addons-path=addons -d mydb
