@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="mail_template_domain_expiration" model="mail.template">
+            <field name="name">Domain: Expiration</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="email_to"></field>
+            <field name="subject">Expiration of Domains:</field>
+            <field name="body_html" type="html">
+                <div>
+                    <h2>Dear <strong t-out="object.name"/>:</h2>
+                    <p>The following domains are 30 days away from expiring:</p>
+                    <ul>
+                        <t t-foreach="ctx.get('domains', [])" t-as="d">
+                            <li><t t-out="d.name"/></li>
+                        </t>
+                    </ul>
+                    <p>If you intend to renew one or more domains, please get in contact with us by email:</p>
+                </div>   
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+</odoo>

@@ -1,0 +1,93 @@
+<odoo>
+    <!-- ACTION -->
+    <record id="domain_manager_tree" model="ir.actions.act_window">
+        <field name="name">Domains</field>
+        <field name="res_model">domain.manager</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- TREE VIEW -->
+    <record id="domain_view_list" model="ir.ui.view">
+        <field name="name">domain_manager.tree</field>
+        <field name="model">domain.manager</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="owner"/>
+                <field name="expire_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM VIEW -->
+    <record id="domain_manager_form" model="ir.ui.view">
+        <field name="name">domain.manager.form</field>
+        <field name="model">domain.manager</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" type="object" class="oe_highlight" string="Activate" attrs="{'invisible': [('state', 'in', ['active'])]}"/>
+                    <button name="action_cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'in', ['cancelled'])]}" />
+                    <button name="action_set_draft" type="object" string="Return to Draft" attrs="{'invisible': [('state', 'in', ['draft'])]}" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="owner" />
+                        <field name="expire_date" />
+                        <field name="active_time" />
+                        <field name="state" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+                <field name="activity_ids" widget="mail_activity"/>
+            </div>
+            </form>
+        </field>
+    </record>
+    <!-- SEARCH -->
+    <record id="domain_view_search" model="ir.ui.view">
+        <field name="name">domain_manager.search</field>
+        <field name="model">domain.manager</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="owner" />
+                <field name="expire_date"/>
+                <field name="state" />
+                <filter string="Active domains" name="state" domain="[('state','=','active')]" />
+                <filter string="Cancelled domains" name="state" domain="[('state','=','cancelled')]" />
+                <group expand="0" string="Group By">
+                    <filter string="Owner" name="owner" context="{'group_by': 'owner'}" />
+                    <filter string="State" name="state" context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- CHATTER -->
+    <record id="view_form_mi_modelo" model="ir.ui.view">
+        <field name="name">domain_manager.form</field>
+        <field name="model">domain.manager</field>
+        <field name="arch" type="xml">
+            <form string="Domain_manager_chatter">
+                <sheet>
+                    <field name="name" />
+                    <field name="expire_date" />
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- MENUITEMS -->
+    <menuitem id="domain_menu_root" name="Domain Manager" web_icon="domain_manager,static/description/odoo_icon.png" sequence="10">
+        <menuitem id="domain_first_level_menu" name="Domains">
+            <menuitem id="domain_manager" action="domain_manager_tree"/>
+        </menuitem>
+    </menuitem>
+</odoo>
